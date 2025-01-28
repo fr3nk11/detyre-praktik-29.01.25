@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+function processOrder(orderId, callback) {
+    console.log(`Processing order: ${orderId}`);
+    setTimeout(() => {
+        callback(`Order ${orderId} has been processed!`);
+    }, 2000);
+}
+
+function prepareItems(orderId, callback) {
+    console.log(`Preparing items for order: ${orderId}`);
+    setTimeout(() => {
+        callback(`Items for order ${orderId} are ready for shipping!`);
+    }, 1500);
+}
+
+function shipOrder(orderId, callback) {
+    console.log(`Shipping order: ${orderId}`);
+    setTimeout(() => {
+        callback(`Order ${orderId} has been shipped!`);
+    }, 3000);
+}
+
+// Linking the functions
+const orderId = "12345";
+processOrder(orderId, (processMessage) => {
+    console.log(processMessage);
+    prepareItems(orderId, (prepareMessage) => {
+        console.log(prepareMessage);
+        shipOrder(orderId, (shipMessage) => {
+            console.log(shipMessage);
+            console.log(`Order process completed for ${orderId}`);
+        });
+    });
+});
+
+
+    </script>
+</body>
+</html>
